@@ -8,7 +8,7 @@ source "$SCRIPT_DIR/helpers.sh"
 # Definitions
 # =============================================================================
 
-SECTIONS=("core" "gnome" "dev" "gpu" "gaming" "comms" "sddm")
+SECTIONS=("core" "gnome" "dev" "gpu" "gaming" "comms")
 
 # =============================================================================
 # Prerequisites
@@ -65,7 +65,7 @@ function install_section_core {
 function install_section_gnome {
     show_dialog_section_begin "Desktop Environment" "Gnome related modifications"
 
-    M=org.gnome.desktop.wm.keybindings
+    WM=org.gnome.desktop.wm.keybindings
 
     # Window shortcuts
     gsettings set $WM close            "['<Super>q']"
@@ -200,20 +200,6 @@ function install_section_comms {
     aur_install vesktop-bin slack-desktop-wayland
 
     show_dialog_section_finished "Communicators"
-}
-
-# =============================================================================
-# SDDM Theme - login screen theme
-# =============================================================================
-
-function install_section_sddm {
-    show_dialog_section_begin "SDDM" "Simple Desktop Display Manager login screen theme"
-
-    sudo cp -r $SCRIPT_DIR/sddm/themes/sphinx-modified /usr/share/sddm/themes
-    sudo mkdir -p /etc/sddm.conf.d
-    echo -e "[Theme]\nCurrent=sphinx-modified" | sudo tee /etc/sddm.conf.d/theme.conf
-  
-    show_dialog_section_finished "SDDM"
 }
 
 # =============================================================================
