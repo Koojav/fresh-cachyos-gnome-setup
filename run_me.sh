@@ -65,8 +65,13 @@ function install_section_core {
 function install_section_gnome {
     show_dialog_section_begin "Desktop Environment" "Gnome related modifications"
 
+    # Turn off dynamically created workspaces and set their amount to 4
     gsettings set org.gnome.mutter dynamic-workspaces false
     gsettings set org.gnome.desktop.wm.preferences num-workspaces 4
+
+    # Turn off mouse acceleration
+    gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
+    gsettings set org.gnome.desktop.peripherals.mouse speed 0
 
     WM=org.gnome.desktop.wm.keybindings
 %
