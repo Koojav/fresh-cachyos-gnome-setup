@@ -1,4 +1,4 @@
-# Setup a brand new CachyOS with Hyprland
+# Setup a brand new CachyOS with GNOME
 
 ## 📝 Remember to backup important stuff
 - [ ] Credentials: `.ssh`, `.aws`, `.pgpass`, `.my.cnf`
