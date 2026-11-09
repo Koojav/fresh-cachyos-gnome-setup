@@ -65,8 +65,11 @@ function install_section_core {
 function install_section_gnome {
     show_dialog_section_begin "Desktop Environment" "Gnome related modifications"
 
-    WM=org.gnome.desktop.wm.keybindings
+    gsettings set org.gnome.mutter dynamic-workspaces false
+    gsettings set org.gnome.desktop.wm.preferences num-workspaces 4
 
+    WM=org.gnome.desktop.wm.keybindings
+%
     # Window shortcuts
     gsettings set $WM close            "['<Super>q']"
     gsettings set $WM toggle-maximized "['<Super>f']"
