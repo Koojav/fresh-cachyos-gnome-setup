@@ -69,15 +69,25 @@ function install_section_gnome {
     gsettings set org.gnome.mutter dynamic-workspaces false
     gsettings set org.gnome.desktop.wm.preferences num-workspaces 4
 
+    # Restrict window switching to the context of the selected workspace
+    gsettings set org.gnome.shell.app-switcher current-workspace-only true
+
     # Turn off mouse acceleration
     gsettings set org.gnome.desktop.peripherals.mouse accel-profile 'flat'
     gsettings set org.gnome.desktop.peripherals.mouse speed 0
 
+    # Open home folder in File browser
+    gsettings set org.gnome.settings-daemon.plugins.media-keys home "['<Super>e']"
+
     WM=org.gnome.desktop.wm.keybindings
-%
+
     # Window shortcuts
-    gsettings set $WM close            "['<Super>q']"
+    gsettings set $WM close            "['<Super>q', '<Alt>F4']"
     gsettings set $WM toggle-maximized "['<Super>f']"
+
+    # Make ALT TAB switch between windows, not between applications
+    gsettings set $WM switch-applications  "[]"
+    gsettings set $WM switch-windows       "['<Alt>Tab']"
 
     # Workspace shortcuts: Super+N switches, Super+Shift+N moves the window
     for i in 1 2 3 4; do
